@@ -11,14 +11,16 @@ import javax.net.ssl.X509TrustManager;
 
 import io.reactivex.disposables.Disposable;
 
+import static com.gxx.translatelangproject.MainActivity.APPID;
+import static com.gxx.translatelangproject.MainActivity.SECURITYKEY;
+
 /**
  * @date: 2019/7/19 0019
  * @author: gaoxiaoxiong
  * @description:封装一些常用的请求方式
  **/
 public class MAFMobileRequest {
-    public static final String APPID="";
-    public static final String SECURITYKEY="";
+
     /**
      * @date: 创建时间:2019/9/4
      * @author: gaoxiaoxiong
@@ -36,18 +38,6 @@ public class MAFMobileRequest {
         // 签名
         String src = APPID + mapString.get("q") + salt + SECURITYKEY; // 加密前的原文
         mapString.put("sign", MD5.md5(src));
-        /*String sendUrl = null;
-        try {
-            SSLContext sslcontext  = SSLContext.getInstance("TLS");
-            sslcontext.init(null, new TrustManager[] { myX509TrustManager }, null);
-            sendUrl = getUrlWithQueryString(url, mapString);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (KeyManagementException e) {
-            e.printStackTrace();
-        }*/
-
-
         MAFApiManager.getInstence().createBaseApi().getJsonRequest(url,mapString)
                 .compose(ResponseTransformer.JsonHandleResult())
                 .compose(SchedulerProvider.getInstance().applySchedulers())
