@@ -1,14 +1,24 @@
 package com.gxx.translatelangproject.model;
 
+import java.util.List;
+
 public class TransResultModel {
+    //翻译回来的原文 + 译文
     private String src;
     private String dst;
 
-
-
     private String resourceKey;
     private String resourceValue;
-    private int position;
+    private List<String> resourceChildList;
+
+
+    public List<String> getResourceChildList() {
+        return resourceChildList;
+    }
+
+    public void setResourceChildList(List<String> resourceChildList) {
+        this.resourceChildList = resourceChildList;
+    }
 
     public String getResourceKey() {
         return resourceKey;
@@ -26,13 +36,7 @@ public class TransResultModel {
         this.resourceValue = resourceValue;
     }
 
-    public int getPosition() {
-        return position;
-    }
 
-    public void setPosition(int position) {
-        this.position = position;
-    }
 
     public String getSrc() {
         return src;

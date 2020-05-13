@@ -1,7 +1,43 @@
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">TransLateLangProject</string>
     <string name="hello">你好</string>
     <string name="module_test_jump">模块测试跳转</string>
     <string name="cancel">取消</string>
     <string name="confirm">确定</string>
+
+
+
+    <!--
+        <string-array name="message_settings_item2">
+            <item>系统消息2</item>
+            <item>物流通知2</item>
+            <item>优惠促销2</item>
+            <item>商品提醒2</item>
+            <item>我的资产2</item>
+            <item>商城好店2</item>
+        </string-array>
+
+        <string name="cancel2">取消2</string>
+        <string name="confirm2">确定2</string>-->
+
+
+    <!--<string name="user_age_format">
+        <xliff:g id="year">%1$d</xliff:g>
+        -
+        <xliff:g id="month">%2$02d</xliff:g>
+        -
+        <xliff:g id="day">%3$02d</xliff:g>
+    </string>
+
+    <string name="register_sub_title">
+        请输入手机号码
+        <xliff:g id="step_count">%1$s</xliff:g>
+        收到的校验码
+    </string>
+
+    <string name="find_pwd_second_title">
+        请输入
+        <xliff:g id="step_count">%1$s</xliff:g>
+        收到的校验码
+    </string>-->
 </resources>

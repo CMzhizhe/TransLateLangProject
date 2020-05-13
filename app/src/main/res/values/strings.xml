@@ -1,7 +1,18 @@
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">TransLateLangProject</string>
     <string name="hello">你好</string>
     <string name="module_test_jump">模块测试跳转</string>
     <string name="cancel">取消</string>
     <string name="confirm">确定</string>
+
+    <string-array name="message_settings_item">
+        <item>系统消息</item>
+        <item>物流通知</item>
+        <item>优惠促销</item>
+        <item>商品提醒</item>
+        <item>我的资产</item>
+        <item>商城好店</item>
+    </string-array>
+
+
 </resources>
