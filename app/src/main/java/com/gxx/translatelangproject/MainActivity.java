@@ -45,10 +45,9 @@ import io.reactivex.schedulers.Schedulers;
 public class MainActivity extends AppCompatActivity {
     private String TAG = MainActivity.class.getSimpleName();
     public static final String TargetLang = "cht";
-    public static final String APPID = "";
-    public static final String SECURITYKEY = "";
+    public static final String APPID = "";//这里填写你的APPID
+    public static final String SECURITYKEY = "";//这里填写你的SECURITYKEY
     public static final String TRANS_API_HOST = "http://api.fanyi.baidu.com/api/trans/vip/translate/";
-    private boolean toParseAndroid = false;
     private String iosText = "\"tabbar.home.title\" = \"中国\";\n" +
             "\"tabbar.category.title\" = \"分类\";\n" +
             "\"tabbar.discover.title\" = \"发现\";\n" +
@@ -58,11 +57,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (toParseAndroid) {
-            parserAndroidXml();
-        } else {
-            parseIosText();
-        }
+        parserAndroidXml();
+        parseIosText();
     }
 
     /**
@@ -79,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
             transResultModel.setResourceValue(arrayList[i].split("=")[1].trim().replace("\"", "").replace("\n",""));
             transResultModelList.add(transResultModel);
         }
-        readAndroidBaiduFanYi(transResultModelList);
+        readFanYi(transResultModelList,false);
     }
 
     /**
@@ -92,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 .map(new Function<String, List<TransResultModel>>() {
                     @Override
                     public List<TransResultModel> apply(String s) throws Exception {
+                        Thread.sleep(3 * 1000);
                         List<TransResultModel> list = new ArrayList<>();
                         // 创建解析器
                         SAXReader xSaxReader = new SAXReader();
@@ -120,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onNext(List<TransResultModel> list) {
-                        readAndroidBaiduFanYi(list);
+                        readFanYi(list,true);
                     }
 
                     @Override
@@ -141,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
      * @auther gaoxiaoxiong
      * @description 百度翻译
      **/
-    private void readAndroidBaiduFanYi(List<TransResultModel> transResultModelList) {
+    private void readFanYi(List<TransResultModel> transResultModelList,boolean isAndroid) {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < transResultModelList.size(); i++) {
             stringBuilder.append(transResultModelList.get(i).getResourceValue());
@@ -168,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < newTransResultList.size(); i++) {
                     newTransResultList.get(i).setResourceKey(transResultModelList.get(i).getResourceKey());
                 }
-                if (toParseAndroid) {
+                if (isAndroid) {
                     createXml(newTransResultList);
                 } else {
                     createIosText(newTransResultList);
